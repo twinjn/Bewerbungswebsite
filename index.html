@@ -38,12 +38,11 @@
 
   <!-- Skills -->
   <section class="max-w-5xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12">
-    <!-- ... unverändert von oben (siehe vorherige Nachricht) ... -->
+    <!-- ... unverändert ... -->
   </section>
 
   <!-- Projekte Teaser -->
   <section class="max-w-6xl mx-auto px-6 pb-24 grid md:grid-cols-3 gap-10">
-    <!-- Projektkarte wie in projects.html (siehe unten) -->
     <article class="card p-6 reveal">
       <img src="project-lustrous.png" alt="Screenshot Lustrous Mermaid"
            class="w-full h-40 object-cover rounded-md mb-4">
@@ -55,28 +54,46 @@
          target="_blank"
          class="text-[#0A84FF] font-semibold hover:underline">Live ansehen →</a>
     </article>
-    <!-- zwei Platzhalter-Cards -->
     <article class="card p-6 reveal delay-100">
       <img src="project2.png" alt="Projekt 2" class="w-full h-40 object-cover rounded-md mb-4">
-      <h3 class="text-xl font-semibold mb-2">Projekt 2</h3>
+      <h3 class="text-xl font-semibold mb-2">SHOOTER GAME</h3>
       <p class="text-gray-400 mb-4">Eines meiner ersten Projekte war die Entwicklung eines Shooter-Spiels.</p>
-     <a href="https://github.com/twinjn/Scootergame"
+      <a href="https://github.com/twinjn/Scootergame"
          target="_blank"
-         class="text-[#0A84FF] font-semibold hover:underline">Live ansehen →</a></article>
+         class="text-[#0A84FF] font-semibold hover:underline">Live ansehen →</a>
+    </article>
     <article class="card p-6 reveal delay-200">
       <img src="project3.png" alt="Projekt 3" class="w-full h-40 object-cover rounded-md mb-4">
-      <h3 class="text-xl font-semibold mb-2">Projekt 3</h3>
-      <p class="text-gray-400 mb-4">Kurzbeschreibung …</p>
+      <h3 class="text-xl font-semibold mb-2">CHAT BOT (Noch im Aufbau)</h3>
+      <p class="text-gray-400 mb-4">Ich habe einen Chatbot entwickelt, der Fragen auf meiner Website entgegennimmt und 
+    beantwort. (Blauer Kreis)</p>
     </article>
   </section>
+
 </main>
 
 <!-- Floating Button -->
-<a id="cta" class="btn-floating" title="Frag mich etwas">
+<a id="cta" class="btn-floating fixed bottom-6 right-6 bg-[#0A84FF] text-white p-4 rounded-full shadow-lg" title="Frag mich etwas">
   <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2">
     <path stroke-linecap="round" stroke-linejoin="round" d="M21 15v4a2 2 0 01-2 2H5a2…"/>
   </svg>
 </a>
+
+<!-- Chat Overlay -->
+<div id="chat-container" class="fixed bottom-20 right-6 w-80 max-h-[60vh] flex flex-col bg-[#1C1C1E] rounded-lg shadow-lg overflow-hidden hidden z-50">
+  <div id="chat-header" class="px-4 py-2 bg-[#0A0A0A]/90 text-white font-semibold">
+    Frage mich etwas!
+    <button id="chat-close" class="float-right">&times;</button>
+  </div>
+  <div id="messages" class="flex-1 px-4 py-2 overflow-y-auto space-y-2 text-sm"></div>
+  <form id="chat-form" class="flex border-t border-[#333]">
+    <input id="chat-input" 
+           type="text" 
+           placeholder="Deine Frage …" 
+           class="flex-1 px-3 py-2 bg-[#1C1C1E] text-white focus:outline-none" />
+    <button type="submit" class="px-4 bg-[#0A84FF] text-white">→</button>
+  </form>
+</div>
 
 <script src="script.js"></script>
 <script defer src="chat.js"></script>
