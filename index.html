@@ -1,104 +1,132 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Twin Jegan – Home</title>
+  <title>Twin Jegan · Bewerbungswebsite</title>
+  <meta name="description" content="Projekte, Erfahrung und direkter CV Download. Dark Mode, Deutsch Englisch und ein Mini Game.">
+  <meta name="theme-color" content="#2563EB">
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body class="flex flex-col min-h-screen">
+<body class="bg-base text-fore">
 
-<header class="w-full py-4 bg-[#0A0A0A]/85 border-b border-[#1C1C1E] fixed top-0 z-40">
-  <div class="container mx-auto px-6 flex justify-between items-center">
-    <a href="index.html" class="text-xl font-semibold">Twin Jegan</a>
-    <nav class="space-x-6 text-sm font-medium">
-      <a href="index.html"  class="text-[#0A84FF]">Home</a>
-      <a href="about.html"  class="hover:text-[#0A84FF]">Über mich</a>
-      <a href="projects.html" class="hover:text-[#0A84FF]">Projekte</a>
-      <a href="contact.html" class="hover:text-[#0A84FF]">Kontakt</a>
+<header class="w-full py-4 sticky top-0 z-40 bg-nav border-b border-border/40 backdrop-blur">
+  <div class="container mx-auto px-6 flex justify-between items-center gap-4">
+    <a href="index.html" class="text-lg md:text-xl font-semibold tracking-tight">Twin Jegan</a>
+    <nav class="hidden sm:flex items-center gap-5 text-sm font-medium">
+      <a href="index.html" class="nav-link" data-i18n="nav_home">Home</a>
+      <a href="about.html" class="nav-link" data-i18n="nav_about">Über mich</a>
+      <a href="projects.html" class="nav-link" data-i18n="nav_projects">Projekte</a>
+      <a href="experience.html" class="nav-link" data-i18n="nav_experience">Erfahrung</a>
+      <a href="games.html" class="nav-link">Games</a>
+      <a href="contact.html" class="nav-link" data-i18n="nav_contact">Kontakt</a>
     </nav>
+    <div class="flex items-center gap-2">
+      <a href="https://www.linkedin.com/in/twinjegan?originalSubdomain=ch" target="_blank" aria-label="LinkedIn" class="chip flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4V8zm7.5 0h3.8v2.2H12c.5-.9 1.74-2.2 4-2.2 4.28 0 5.07 2.82 5.07 6.48V24h-4v-7.62c0-1.82-.03-4.17-2.54-4.17-2.55 0-2.94 1.99-2.94 4.04V24h-4V8z"/></svg>
+        <span class="hidden md:inline">LinkedIn</span>
+      </a>
+      <button id="langToggle" class="chip" aria-label="Sprache">DE EN</button>
+      <button id="themeToggle" class="chip" aria-label="Theme">☀︎ ☾</button>
+      <a href="Lebenslauf Twin Jegan.pdf" download class="btn-ghost hidden md:inline-flex" data-i18n="cta_cv">Lebenslauf</a>
+    </div>
   </div>
 </header>
 
-<main class="flex-grow pt-24">
-
-  <!-- Hero -->
-  <section class="hero-gradient py-32 text-center text-white">
-    <img src="portrait.jpg" alt="Porträt Twin Jegan"
-         class="w-40 h-40 object-cover mx-auto mb-8 rounded-full ring-4 ring-[#0A84FF]/60 reveal">
-    <h1 class="text-5xl font-semibold mb-4 reveal">Twin Jegan</h1>
-    <p class="text-2xl mb-8 text-[#A0CFFF] reveal">IMS-Schüler (3. Klasse) – Praxisjahr 2026/27 gesucht</p>
-    <p class="max-w-xl mx-auto text-gray-300 mb-10 reveal">
-      Technikbegeistert · teamorientiert · bereit, mein Können in der Praxis zu beweisen.
-    </p>
-    <a href="projects.html" class="btn-primary reveal">Meine Projekte</a>
-  </section>
-
-  <!-- Skills -->
-  <section class="max-w-5xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12">
-    <!-- ... unverändert ... -->
-  </section>
-
-  <!-- Projekte Teaser -->
-  <section class="max-w-6xl mx-auto px-6 pb-24 grid md:grid-cols-3 gap-10">
-    <article class="card p-6 reveal">
-      <img src="project-lustrous.png" alt="Screenshot Lustrous Mermaid"
-           class="w-full h-40 object-cover rounded-md mb-4">
-      <h3 class="text-xl font-semibold mb-2">FC CITY BOYS ZH</h3>
-      <p class="text-gray-400 mb-4">
-        Einer meiner ersten One-Pager - Projekte, die Geschichte & Ziele des FC CITY BOYS erzählen.
+<main class="flex-grow">
+  <!-- HERO -->
+  <section class="relative overflow-hidden py-22 md:py-28 hero-soft">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <img src="portrait.jpg" alt="Porträt Twin Jegan" class="mx-auto w-36 h-36 rounded-full ring-4 ring-brand/30 object-cover reveal">
+      <h1 class="text-4xl md:text-6xl font-extrabold mt-6 reveal" data-i18n="hero_title">Hallo, ich bin Twin</h1>
+      <p class="mt-3 text-lg md:text-2xl text-muted reveal" data-i18n="hero_sub">IMS Schülerin Praxisjahr 2026 bis 2027 gesucht</p>
+      <p class="mt-4 max-w-2xl mx-auto text-muted reveal" data-i18n="hero_desc">
+        Technik begeistert, teamorientiert und lernfreudig. Ich bringe Ideen in sauberen Code und liebe klare Lösungen.
       </p>
-      <a href="https://lustrous-mermaid-e1209a.netlify.app"
-         target="_blank"
-         class="text-[#0A84FF] font-semibold hover:underline">Live ansehen →</a>
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-3 reveal">
+        <a href="projects.html" class="btn-primary" data-i18n="cta_projects">Projekte ansehen</a>
+        <a href="Lebenslauf Twin Jegan.pdf" download class="btn-outline" data-i18n="cta_download">Lebenslauf herunterladen</a>
+        <a href="games.html" class="btn-ghost" data-i18n="cta_games">Game spielen</a>
+      </div>
+      <div class="mt-10 flex flex-wrap gap-2 justify-center reveal">
+        <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+        <span class="tag">Python</span><span class="tag">Java</span><span class="tag">Git</span><span class="tag">UX UI</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- HIGHLIGHTS -->
+  <section class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-6 pb-10">
+    <article class="card p-6 reveal">
+      <h3 class="text-xl font-semibold mb-2" data-i18n="hi_speed_title">Schneller Einstieg</h3>
+      <p class="text-muted" data-i18n="hi_speed_text">Kurze Ramp up Zeit, produktiv vom ersten Tag. Saubere Übergaben und klare Dokumentation.</p>
     </article>
     <article class="card p-6 reveal delay-100">
-      <img src="project2.png" alt="Projekt 2" class="w-full h-40 object-cover rounded-md mb-4">
-      <h3 class="text-xl font-semibold mb-2">SHOOTER GAME</h3>
-      <p class="text-gray-400 mb-4">Eines meiner ersten Projekte war die Entwicklung eines Shooter-Spiels.</p>
-      <a href="https://github.com/twinjn/Scootergame"
-         target="_blank"
-         class="text-[#0A84FF] font-semibold hover:underline">Live ansehen →</a>
+      <h3 class="text-xl font-semibold mb-2" data-i18n="hi_reliable_title">Zuverlässig</h3>
+      <p class="text-muted" data-i18n="hi_reliable_text">Verbindliche Kommunikation, pünktliche Abgaben, Fokus auf Qualität und Nutzen.</p>
     </article>
     <article class="card p-6 reveal delay-200">
-      <img src="project3.png" alt="Projekt 3" class="w-full h-40 object-cover rounded-md mb-4">
-      <h3 class="text-xl font-semibold mb-2">CHAT BOT (Noch im Aufbau)</h3>
-      <p class="text-gray-400 mb-4">Ich habe einen Chatbot entwickelt, der Fragen auf meiner Website entgegennimmt und 
-    beantwort. (Blauer Kreis)</p>
+      <h3 class="text-xl font-semibold mb-2" data-i18n="hi_curiosity_title">Neugierig</h3>
+      <p class="text-muted" data-i18n="hi_curiosity_text">Ich lerne schnell und eigne mir neue Tools selbstständig an. Immer mit Blick auf das Ziel.</p>
     </article>
   </section>
 
+  <!-- EXPERIENCE PREVIEW -->
+  <section class="max-w-6xl mx-auto px-6 pb-20">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-3xl font-semibold" data-i18n="exp_title">Erfahrung</h2>
+      <a href="experience.html" class="text-brand font-semibold hover:underline" data-i18n="exp_more">alles ansehen →</a>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="card p-6 reveal">
+        <h3 class="font-semibold text-lg">Oikos Tamil Church · Freiberuflich</h3>
+        <p class="text-sm text-muted">seit Kind bis heute</p>
+        <ul class="list-disc list-inside mt-3 text-muted">
+          <li>Betreuung des YouTube Kanals und Thumbnails</li>
+          <li>Livestream Technik Einrichtung und Tests</li>
+          <li>Video Schnitt und Upload Planung</li>
+          <li>Koordination mit Team für Events</li>
+        </ul>
+        <a href="https://www.youtube.com/@OikosTamilChurch" target="_blank" class="link mt-3 inline-block">YouTube Kanal ansehen →</a>
+      </div>
+      <div class="card p-6 reveal delay-100">
+        <h3 class="font-semibold text-lg" data-i18n="exp_school_title">IMS Baden · Schulprojekte</h3>
+        <p class="text-sm text-muted">seit 2023</p>
+        <ul class="list-disc list-inside mt-3 text-muted">
+          <li data-i18n="exp_p1">Textbasiertes Spiel und Web Tools</li>
+          <li data-i18n="exp_p2">Git Workflow Reviews Dokumentation</li>
+          <li data-i18n="exp_p3">Grundlagen Deployment und SEO</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUN STRIPE -->
+  <section class="stripe">
+    <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center gap-6">
+      <div class="flex-1">
+        <h3 class="text-2xl font-bold mb-2" data-i18n="fun_title">Fun Fact</h3>
+        <p class="text-muted" data-i18n="fun_text">
+          Ich habe schon als Kind bei Oikos Tamil Church Technik gemacht. Das hat meine Liebe zu Medien und IT geprägt.
+        </p>
+      </div>
+      <button id="confettiBtn" class="btn-primary flex-shrink-0" data-i18n="fun_btn">Konfetti</button>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="max-w-6xl mx-auto px-6 py-16 text-center">
+    <h3 class="text-2xl font-bold mb-4" data-i18n="cta_cv_title">Ein Blick in meinen Lebenslauf</h3>
+    <a href="Lebenslauf Twin Jegan.pdf" download class="btn-outline" data-i18n="cta_download">PDF herunterladen</a>
+  </section>
 </main>
 
-<!-- Floating Button -->
-<a id="cta" class="btn-floating fixed bottom-6 right-6 bg-[#0A84FF] text-white p-4 rounded-full shadow-lg" title="Frag mich etwas">
-  <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2">
-    <path stroke-linecap="round" stroke-linejoin="round" d="M21 15v4a2 2 0 01-2 2H5a2…"/>
-  </svg>
-</a>
-
-<!-- Chat Overlay -->
-<div id="chat-container" class="fixed bottom-20 right-6 w-80 max-h-[60vh] flex flex-col bg-[#1C1C1E] rounded-lg shadow-lg overflow-hidden hidden z-50">
-  <div id="chat-header" class="px-4 py-2 bg-[#0A0A0A]/90 text-white font-semibold">
-    Frage mich etwas!
-    <button id="chat-close" class="float-right">&times;</button>
-  </div>
-  <div id="messages" class="flex-1 px-4 py-2 overflow-y-auto space-y-2 text-sm"></div>
-  <form id="chat-form" class="flex border-t border-[#333]">
-    <input id="chat-input" 
-           type="text" 
-           placeholder="Deine Frage …" 
-           class="flex-1 px-3 py-2 bg-[#1C1C1E] text-white focus:outline-none" />
-    <button type="submit" class="px-4 bg-[#0A84FF] text-white">→</button>
-  </form>
-</div>
-
-<script src="script.js"></script>
-<script defer src="chat.js"></script>
-<footer class="text-center py-6 border-t border-[#1C1C1E] mt-20">
-  <p class="text-sm">© 2025 Twin Jegan • <a href="#datenschutz" class="hover:text-[#0A84FF]">Datenschutz</a></p>
+<footer class="text-center py-10 border-t border-border/40 mt-20 text-muted">
+  <p class="text-sm">© 2025 Twin Jegan · Mägenwil CH</p>
 </footer>
+<script src="script.js"></script>
 </body>
 </html>
+

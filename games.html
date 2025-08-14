@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Über mich · Twin Jegan</title>
+  <title>Games · Twin Jegan</title>
   <meta name="description" content="">
   <meta name="theme-color" content="#2563EB">
   <script src="https://cdn.tailwindcss.com"></script>
@@ -35,41 +35,16 @@
   </div>
 </header>
 
-<main class="flex-grow pt-6">
-  <section class="max-w-5xl mx-auto px-6 py-12 rounded-2xl bg-panel shadow-xl reveal">
-    <h2 class="text-4xl font-bold mb-4" data-i18n="about_title">Über mich</h2>
-    <p class="text-lg text-muted" data-i18n="about_intro">
-      Ich bin IMS Schülerin in Baden. Ich entwickle Webanwendungen automatisiere Aufgaben und lerne mit Freude neue Tools.
-    </p>
-  </section>
-
-  <section class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-10 py-14">
-    <div class="space-y-3 reveal">
-      <h3 class="text-2xl font-semibold text-brand" data-i18n="about_langs">Sprachen</h3>
-      <ul class="list-disc list-inside text-muted">
-        <li>Deutsch · Muttersprache</li><li>Englisch · B2</li><li>Französisch · B1</li><li>Tamilisch · Muttersprache</li>
-      </ul>
+<main class="flex-grow max-w-5xl mx-auto px-6 py-10">
+  <h1 class="text-3xl font-bold mb-4">Livestream Hero</h1>
+  <p class="text-muted mb-6">Hilf Twin die Bühne zu verkabeln. Sammle Kamera und Mikro Symbole. Weiche Störungen aus. Steuerung mit den Pfeiltasten.</p>
+  <div class="card p-6">
+    <canvas id="livegame" width="560" height="420" class="mx-auto rounded-md border border-border/40 bg-panel"></canvas>
+    <div class="mt-4 flex items-center justify-between">
+      <div class="text-muted">Score <span id="lscore">0</span></div>
+      <button id="lrestart" class="btn-ghost">Neustart</button>
     </div>
-    <div class="space-y-3 reveal delay-100">
-      <h3 class="text-2xl font-semibold text-brand" data-i18n="about_tools">Fähigkeiten und Tools</h3>
-      <ul class="list-disc list-inside text-muted">
-        <li>HTML CSS JavaScript Tailwind</li>
-        <li>Python Java C#</li>
-        <li>Git und GitHub VS Code n8n</li>
-        <li>UX UI Grundlagen Video Schnitt</li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="max-w-5xl mx-auto px-6 py-10">
-    <h3 class="text-2xl font-semibold mb-6 text-brand" data-i18n="about_path">Mein Weg</h3>
-    <div class="timeline">
-      <div class="tl-item"><strong>2014 bis 2020</strong> Primarschule Oberfeld Mägenwil</div>
-      <div class="tl-item"><strong>2020 bis 2023</strong> Bezirksschule Mellingen</div>
-      <div class="tl-item"><strong>seit 2023</strong> IMS Baden Applikationsentwicklung</div>
-      <div class="tl-item"><strong>seit Kind</strong> Oikos Tamil Church Medien und Technik</div>
-    </div>
-  </section>
+  </div>
 </main>
 
 <footer class="text-center py-10 border-t border-border/40 mt-20 text-muted">

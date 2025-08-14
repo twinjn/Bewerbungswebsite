@@ -1,100 +1,83 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Kontakt – Twin Jegan</title>
-
+  <title>Kontakt · Twin Jegan</title>
+  <meta name="description" content="">
+  <meta name="theme-color" content="#2563EB">
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body class="flex flex-col min-h-screen">
+<body class="bg-base text-fore">
 
-<!-- NAV (Link 'Kontakt' aktiv) -->
-<header class="w-full py-4 bg-[#0A0A0A]/85 border-b border-[#1C1C1E] fixed top-0 z-40">
-  <div class="container mx-auto px-6 flex justify-between items-center">
-    <a href="index.html" class="text-xl font-semibold">Twin Jegan</a>
-    <nav class="space-x-6 text-sm font-medium">
-      <a href="index.html" class="hover:text-[#0A84FF]">Home</a>
-      <a href="about.html" class="hover:text-[#0A84FF]">Über mich</a>
-      <a href="projects.html" class="hover:text-[#0A84FF]">Projekte</a>
-      <a href="contact.html" class="text-[#0A84FF]">Kontakt</a>
+<header class="w-full py-4 sticky top-0 z-40 bg-nav border-b border-border/40 backdrop-blur">
+  <div class="container mx-auto px-6 flex justify-between items-center gap-4">
+    <a href="index.html" class="text-lg md:text-xl font-semibold tracking-tight">Twin Jegan</a>
+    <nav class="hidden sm:flex items-center gap-5 text-sm font-medium">
+      <a href="index.html" class="nav-link" data-i18n="nav_home">Home</a>
+      <a href="about.html" class="nav-link" data-i18n="nav_about">Über mich</a>
+      <a href="projects.html" class="nav-link" data-i18n="nav_projects">Projekte</a>
+      <a href="experience.html" class="nav-link" data-i18n="nav_experience">Erfahrung</a>
+      <a href="games.html" class="nav-link">Games</a>
+      <a href="contact.html" class="nav-link" data-i18n="nav_contact">Kontakt</a>
     </nav>
+    <div class="flex items-center gap-2">
+      <a href="https://www.linkedin.com/in/twinjegan?originalSubdomain=ch" target="_blank" aria-label="LinkedIn" class="chip flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4V8zm7.5 0h3.8v2.2H12c.5-.9 1.74-2.2 4-2.2 4.28 0 5.07 2.82 5.07 6.48V24h-4v-7.62c0-1.82-.03-4.17-2.54-4.17-2.55 0-2.94 1.99-2.94 4.04V24h-4V8z"/></svg>
+        <span class="hidden md:inline">LinkedIn</span>
+      </a>
+      <button id="langToggle" class="chip" aria-label="Sprache">DE EN</button>
+      <button id="themeToggle" class="chip" aria-label="Theme">☀︎ ☾</button>
+      <a href="Lebenslauf Twin Jegan.pdf" download class="btn-ghost hidden md:inline-flex" data-i18n="cta_cv">Lebenslauf</a>
+    </div>
   </div>
 </header>
 
-<main class="flex-grow pt-24 max-w-3xl mx-auto px-6 space-y-12">
-
-  <h1 class="text-3xl font-semibold text-center reveal mb-8">Kontakt</h1>
-
-  <!-- Formular --------------------------------------------------->
-  <!-- Kontakt-Formular -->
-<form id="contactForm"
-      action="https://formspree.io/f/mblonqle"   <!--  ← neue ID --
-      method="POST" enctype="multipart/form-data"
-      class="card p-8 space-y-6 reveal" novalidate>
-
-
+<main class="flex-grow pt-6 max-w-3xl mx-auto px-6 space-y-10">
+  <h1 class="text-3xl font-semibold text-center reveal" data-i18n="nav_contact">Kontakt</h1>
+  <form id="contactForm" action="https://formspree.io/f/mblonqle" method="POST" enctype="multipart/form-data" class="card p-8 space-y-6 reveal" novalidate>
+    <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off">
     <div>
-      <label for="name" class="block mb-1 font-semibold">Name <span class="text-red-500">*</span></label>
-      <input id="name" name="name" required
-             class="w-full rounded-md bg-gray-900 border border-gray-700 px-4 py-2 focus:ring-2 focus:ring-[#0A84FF]">
-      <p class="mt-1 text-red-500 text-sm hidden" id="nameError">Bitte Name eingeben.</p>
+      <label for="name" class="block mb-1 font-semibold" data-i18n="form_name">Name</label>
+      <input id="name" name="name" required class="input">
+      <p class="err hidden" id="nameError" data-i18n="form_name_err">Bitte Name eingeben.</p>
     </div>
-
     <div>
-      <label for="email" class="block mb-1 font-semibold">E-Mail <span class="text-red-500">*</span></label>
-      <input type="email" id="email" name="email" required
-             class="w-full rounded-md bg-gray-900 border border-gray-700 px-4 py-2 focus:ring-2 focus:ring-[#0A84FF]">
-      <p class="mt-1 text-red-500 text-sm hidden" id="emailError">Bitte gültige E-Mail eingeben.</p>
+      <label for="email" class="block mb-1 font-semibold" data-i18n="form_mail">E Mail</label>
+      <input type="email" id="email" name="email" required class="input">
+      <p class="err hidden" id="emailError" data-i18n="form_mail_err">Bitte gültige E Mail eingeben.</p>
     </div>
-
     <div>
-      <label for="subject" class="block mb-1 font-semibold">Betreff <span class="text-red-500">*</span></label>
-      <input id="subject" name="subject" required
-             class="w-full rounded-md bg-gray-900 border border-gray-700 px-4 py-2 focus:ring-2 focus:ring-[#0A84FF]">
-      <p class="mt-1 text-red-500 text-sm hidden" id="subjectError">Bitte Betreff eingeben.</p>
+      <label for="subject" class="block mb-1 font-semibold" data-i18n="form_subject">Betreff</label>
+      <input id="subject" name="subject" required class="input">
+      <p class="err hidden" id="subjectError" data-i18n="form_subject_err">Bitte Betreff eingeben.</p>
     </div>
-
     <div>
-      <label for="message" class="block mb-1 font-semibold">Nachricht <span class="text-red-500">*</span></label>
-      <textarea id="message" name="message" rows="5" required
-                class="w-full rounded-md bg-gray-900 border border-gray-700 px-4 py-2 focus:ring-2 focus:ring-[#0A84FF]"></textarea>
-      <p class="mt-1 text-red-500 text-sm hidden" id="messageError">Bitte Nachricht eingeben.</p>
+      <label for="message" class="block mb-1 font-semibold" data-i18n="form_msg">Nachricht</label>
+      <textarea id="message" name="message" rows="5" required class="input"></textarea>
+      <p class="err hidden" id="messageError" data-i18n="form_msg_err">Bitte Nachricht eingeben.</p>
     </div>
-
     <div>
-      <label for="file" class="block mb-1 font-semibold">Datei-Upload (optional, PDF/ZIP)</label>
-      <input type="file" id="file" name="file" accept=".pdf,.zip" class="w-full text-gray-300">
+      <label for="file" class="block mb-1 font-semibold" data-i18n="form_file">Datei Upload optional PDF ZIP</label>
+      <input type="file" id="file" name="file" accept=".pdf,.zip" class="w-full text-muted">
     </div>
-
-    <button type="submit" class="btn-primary w-full sm:w-auto">Absenden</button>
+    <button type="submit" class="btn-primary w-full sm:w-auto" data-i18n="form_send">Absenden</button>
   </form>
-
-  <!-- Direktinfos ------------------------------------------------>
-  <aside class="card p-8 text-gray-300 space-y-3 reveal" id="contact">
-    <!-- TODO: Foto Arbeitsplatz / Keyboard (600×350) -->
-    <h3 class="text-xl font-semibold mb-2">Hier finden Sie mich auch</h3>
-    <p><strong>☎</strong> +41 76 447 10 06</p>
-    <p><strong>✉</strong> <a href="mailto:twinjegan@gmail.com" class="text-[#0A84FF] hover:underline">twinjegan@gmail.com</a></p>
-    <p><strong>🔗</strong> <a href="https://www.linkedin.com/in/twinjegan?originalSubdomain=ch"
-                             target="_blank" class="text-[#0A84FF] hover:underline">
-      <span>LinkedIn</span>
-    </a></p>
+  <aside class="card p-8 text-muted space-y-3 reveal" id="contact">
+    <h3 class="text-xl font-semibold mb-2" data-i18n="contact_more">Weitere Kontaktwege</h3>
+    <p><strong>Telefon</strong> +41 76 447 10 06</p>
+    <p><strong>E Mail</strong> <a href="mailto:twinjegan@gmail.com" class="link">twinjegan@gmail.com</a></p>
+    <p><strong>LinkedIn</strong> <a href="https://www.linkedin.com/in/twinjegan?originalSubdomain=ch" target="_blank" class="link">Profil ansehen</a></p>
   </aside>
-
-  <div id="successToast"
-       class="fixed bottom-6 right-6 bg-[#0A84FF] text-[#0A0A0A] px-6 py-3 rounded-md shadow-lg
-              opacity-0 pointer-events-none transition-opacity"
-       role="alert">Nachricht erfolgreich gesendet!
-  </div>
-
+  <div id="successToast" class="toast" role="alert">Nachricht erfolgreich gesendet</div>
 </main>
 
-<script src="script.js"></script>
-<footer class="text-center py-6 border-t border-[#1C1C1E] mt-20">
-  <p class="text-sm">© 2025 Twin Jegan • <a href="#datenschutz" class="hover:text-[#0A84FF]">Datenschutz</a></p>
+<footer class="text-center py-10 border-t border-border/40 mt-20 text-muted">
+  <p class="text-sm">© 2025 Twin Jegan · Mägenwil CH</p>
 </footer>
+<script src="script.js"></script>
 </body>
 </html>
+
