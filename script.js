@@ -16,7 +16,7 @@
     de: {
       nav_home: "Home", nav_about: "Über mich", nav_projects: "Projekte", nav_experience:"Erfahrung", nav_contact:"Kontakt",
       hero_title: "Hallo, ich bin Twin",
-      hero_sub: "IMS Schülerin Praxisjahr 2026 bis 2027 gesucht",
+      hero_sub: "IMS Schüler Praxisjahr 2026 bis 2027 gesucht",
       hero_desc: "Technik begeistert, teamorientiert und lernfreudig. Ich bringe Ideen in sauberen Code und liebe klare Lösungen.",
       cta_projects: "Projekte ansehen", cta_download: "Lebenslauf herunterladen", cta_games: "Game spielen",
       hi_speed_title:"Schneller Einstieg", hi_speed_text:"Kurze Ramp up Zeit, produktiv vom ersten Tag. Saubere Übergaben und klare Dokumentation.",
