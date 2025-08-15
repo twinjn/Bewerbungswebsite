@@ -11,6 +11,13 @@
     localStorage.setItem('theme', next)
   })
 
+  // Mobile menu toggle
+  const menuToggle = document.getElementById("menuToggle")
+  const navMenu = document.getElementById("navMenu")
+  menuToggle && navMenu && menuToggle.addEventListener("click", () => {
+    navMenu.classList.toggle("hidden")
+  })
+
   // i18n
   const strings = {
     de: {
