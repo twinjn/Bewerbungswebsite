@@ -11,6 +11,35 @@
     localStorage.setItem('theme', next)
   })
 
+  // Mobile menu toggle
+  const mobileMenuToggle = document.getElementById('mobileMenuToggle')
+  const mobileMenu = document.getElementById('mobileMenu')
+  if (mobileMenuToggle && mobileMenu) {
+    mobileMenuToggle.addEventListener('click', () => {
+      const isOpen = !mobileMenu.classList.contains('hidden')
+      mobileMenu.classList.toggle('hidden', isOpen)
+      mobileMenuToggle.setAttribute('aria-label', isOpen ? 'Menü öffnen' : 'Menü schließen')
+    })
+    
+    // Close menu when clicking on links
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden')
+        mobileMenuToggle.setAttribute('aria-label', 'Menü öffnen')
+      })
+    })
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!mobileMenu.classList.contains('hidden') && 
+          !mobileMenu.contains(e.target) && 
+          !mobileMenuToggle.contains(e.target)) {
+        mobileMenu.classList.add('hidden')
+        mobileMenuToggle.setAttribute('aria-label', 'Menü öffnen')
+      }
+    })
+  }
+
   // i18n
   const strings = {
     de: {
