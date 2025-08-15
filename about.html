@@ -13,9 +13,9 @@
 <body class="bg-base text-fore">
 
 <header class="w-full py-4 sticky top-0 z-40 bg-nav border-b border-border/40 backdrop-blur">
-  <div class="container mx-auto px-6 flex justify-between items-center gap-4">
+  <div class="container mx-auto px-6 flex justify-between items-center gap-4 relative">
     <a href="index.html" class="text-lg md:text-xl font-semibold tracking-tight">Twin Jegan</a>
-    <nav class="hidden sm:flex items-center gap-5 text-sm font-medium">
+    <nav id="navMenu" class="hidden absolute top-full left-0 w-full bg-nav border-b border-border/40 flex-col gap-4 p-4 sm:static sm:flex sm:flex-row sm:items-center sm:w-auto sm:p-0 sm:border-0 sm:bg-transparent sm:gap-5 text-sm font-medium">
       <a href="index.html" class="nav-link" data-i18n="nav_home">Home</a>
       <a href="about.html" class="nav-link" data-i18n="nav_about">Über mich</a>
       <a href="projects.html" class="nav-link" data-i18n="nav_projects">Projekte</a>
@@ -24,6 +24,7 @@
       <a href="contact.html" class="nav-link" data-i18n="nav_contact">Kontakt</a>
     </nav>
     <div class="flex items-center gap-2">
+      <button id="menuToggle" class="chip sm:hidden" aria-label="Menü">☰</button>
       <a href="https://www.linkedin.com/in/twinjegan?originalSubdomain=ch" target="_blank" aria-label="LinkedIn" class="chip flex items-center gap-2">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4V8zm7.5 0h3.8v2.2H12c.5-.9 1.74-2.2 4-2.2 4.28 0 5.07 2.82 5.07 6.48V24h-4v-7.62c0-1.82-.03-4.17-2.54-4.17-2.55 0-2.94 1.99-2.94 4.04V24h-4V8z"/></svg>
         <span class="hidden md:inline">LinkedIn</span>
