@@ -1,73 +1,112 @@
 /****************************************************************
-*  Kleiner Chatbot über OpenAI-API                              *
+*  KI-Chatbot über Google Gemini API                            *
 ****************************************************************/
-const OPENAI_KEY = "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";      /*  <-  HIER DEIN KEY  */
-const systemMsg  = "Du bist Twin Jegans Karriere-Chatbot. " +
-                   "Antworte kurz, hilfreich, auf Deutsch.";
+const GEMINI_KEY = "AIzaSyCwSXrm7oP7F5LMCucJnIq1PF96LJTL0I4";
+const systemMsg =
+  "Du bist Twin Jegans Bewerbungs-Chatbot. Antworte freundlich, präzise und auf Deutsch. " +
+  "Beantworte nur Fragen über Twin Jegan, seine Fähigkeiten, Projekte, Erfahrung und Kontakt. " +
+  "Wenn Infos fehlen, sag ehrlich, dass du das nicht weißt.";
 
-const btn   = document.getElementById("cta");
-const panel = document.createElement("div");
-panel.id    = "chatPanel";
+const botBtn = document.createElement("button");
+botBtn.id = "chatToggle";
+botBtn.type = "button";
+botBtn.className =
+  "fixed bottom-6 right-6 z-50 btn-primary shadow-xl";
+botBtn.textContent = "🤖 KI-Chat";
+
+const panel = document.createElement("section");
+panel.id = "chatPanel";
 panel.className =
-  "fixed bottom-28 right-6 w-[320px] h-[420px] bg-[#18181B] text-sm " +
-  "rounded-xl shadow-2xl p-4 flex flex-col opacity-0 pointer-events-none " +
-  "transition-opacity";
-
+  "fixed bottom-24 right-6 z-50 w-[340px] h-[460px] max-w-[calc(100vw-2rem)] bg-panel border border-border rounded-xl shadow-2xl p-4 flex flex-col opacity-0 pointer-events-none transition-opacity";
 panel.innerHTML = `
-  <h3 class="text-lg font-semibold mb-2 text-center">Frage mich etwas!</h3>
-  <div id="chatLog" class="flex-1 overflow-y-auto space-y-2 pr-1 mb-2"></div>
+  <div class="flex items-center justify-between mb-2">
+    <h3 class="text-lg font-semibold">Frage mich etwas</h3>
+    <button id="chatClose" type="button" class="chip">✕</button>
+  </div>
+  <p class="text-xs text-muted mb-2">Ich beantworte Fragen über Twin Jegan.</p>
+  <div id="chatLog" class="flex-1 overflow-y-auto space-y-2 pr-1 mb-3"></div>
   <form id="chatForm" class="flex gap-2">
     <input id="chatInput" autocomplete="off" placeholder="Deine Frage …"
-           class="flex-1 bg-[#111114] rounded-md px-3 py-2 focus:outline-none" />
-    <button class="bg-[#0A84FF] rounded-md px-3 text-[#0A0A0A] font-bold">→</button>
+      class="input" />
+    <button class="btn-primary px-3" aria-label="Senden">→</button>
   </form>`;
+
+document.body.appendChild(botBtn);
 document.body.appendChild(panel);
 
-/* Panel toggeln */
-btn.addEventListener("click",()=>{
-  panel.classList.toggle("opacity-0");
-  panel.classList.toggle("pointer-events-none");
-  if(!panel.classList.contains("opacity-0"))
-     document.getElementById("chatInput").focus();
-});
+function togglePanel(show) {
+  const shouldOpen = show ?? panel.classList.contains("opacity-0");
+  panel.classList.toggle("opacity-0", !shouldOpen);
+  panel.classList.toggle("pointer-events-none", !shouldOpen);
+  if (shouldOpen) {
+    document.getElementById("chatInput").focus();
+  }
+}
 
-/* Chat senden */
-document.getElementById("chatForm").addEventListener("submit",async e=>{
+botBtn.addEventListener("click", () => togglePanel());
+panel.querySelector("#chatClose").addEventListener("click", () => togglePanel(false));
+
+const chatLog = panel.querySelector("#chatLog");
+const chatForm = panel.querySelector("#chatForm");
+const chatInput = panel.querySelector("#chatInput");
+
+chatForm.addEventListener("submit", async (e) => {
   e.preventDefault();
-  const inp=document.getElementById("chatInput");
-  const q  =inp.value.trim();
-  if(!q) return;
-  inp.value="";
-  bubble(q,"right");
-  const wait=bubble("…","left",true);
-  try{
-    const a=await ask(q);
-    wait.remove(); bubble(a,"left");
-  }catch(err){
-    wait.remove(); bubble("Fehler 😕", "left");
+  const question = chatInput.value.trim();
+  if (!question) return;
+
+  chatInput.value = "";
+  bubble(question, "right");
+  const waitBubble = bubble("…", "left", true);
+
+  try {
+    const answer = await askGemini(question);
+    waitBubble.remove();
+    bubble(answer, "left");
+  } catch (err) {
+    waitBubble.remove();
+    bubble("Fehler beim Laden der Antwort. Bitte später nochmals versuchen.", "left");
+    console.error(err);
   }
 });
 
-function bubble(t,side,pending=false){
-  const d=document.createElement("div");
-  d.className=`${pending?"pending":""} max-w-[80%] break-words px-3 py-2 rounded-lg `
-             +(side==="right"
-                  ?"ml-auto bg-[#0A84FF] text-[#0A0A0A]"
-                  :"bg-[#27272A] text-[#F2F2F2]");
-  d.textContent=t; document.getElementById("chatLog").appendChild(d);
-  d.scrollIntoView({behavior:"smooth"}); return d;
+function bubble(text, side, pending = false) {
+  const node = document.createElement("div");
+  node.className = `${pending ? "pending" : ""} max-w-[85%] break-words px-3 py-2 rounded-lg ${
+    side === "right"
+      ? "ml-auto bg-[#0A84FF] text-[#0A0A0A]"
+      : "bg-[#27272A] text-[#F2F2F2]"
+  }`;
+  node.textContent = text;
+  chatLog.appendChild(node);
+  node.scrollIntoView({ behavior: "smooth", block: "end" });
+  return node;
 }
-async function ask(user){
-  const body={
-    model:"gpt-3.5-turbo",
-    messages:[{role:"system",content:systemMsg},{role:"user",content:user}],
-    temperature:.7,max_tokens:200
-  };
-  const r=await fetch("https://api.openai.com/v1/chat/completions",{
-    method:"POST",
-    headers:{"Content-Type":"application/json","Authorization":`Bearer ${OPENAI_KEY}`},
-    body:JSON.stringify(body)
+
+async function askGemini(userQuestion) {
+  const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_KEY}`;
+  const response = await fetch(endpoint, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      contents: [
+        {
+          role: "user",
+          parts: [{ text: `${systemMsg}\n\nFrage: ${userQuestion}` }]
+        }
+      ],
+      generationConfig: {
+        temperature: 0.5,
+        maxOutputTokens: 250
+      }
+    })
   });
-  const j=await r.json();
-  return j.choices[0].message.content.trim();
+
+  if (!response.ok) {
+    throw new Error(`Gemini API Fehler: ${response.status}`);
+  }
+
+  const data = await response.json();
+  const text = data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
+  return text || "Dazu habe ich gerade keine Antwort.";
 }
